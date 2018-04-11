@@ -10,9 +10,14 @@ import mapApp from './pages/map/map-app.js';
 const routes = [
   { path: '/', component: home },
   { path: '/about', component: about },
-  { path: '/email', component: emailApp },
-  { path: '/email/compose', component: emailCompose },
-  { path: '/email/:emailId?', component: emailDetails },
+  {
+    path: '/email', component: emailApp,
+    children: [
+      {path: 'compose', component: emailCompose}
+    ]
+  },
+  // { path: '/email/compose', component: emailCompose },
+  // { path: '/email/:emailId?', component: emailDetails },
   { path: '/map', component: mapApp },
 
 
@@ -47,7 +52,7 @@ export default myRouter;
 //       }
 //     ]
 //   },
- 
+
 //   { path: '/map', component: mapApp },
 
 
