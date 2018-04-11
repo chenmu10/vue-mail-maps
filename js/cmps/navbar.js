@@ -1,7 +1,7 @@
 
 export default {
     template: `
-    <section class="navbar">
+    <section class="navigation">
       <header class="">
                
                 <h1>Appsus</h1>
