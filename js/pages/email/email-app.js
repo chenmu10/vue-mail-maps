@@ -4,6 +4,7 @@ import emailList from '../../cmps/email/email-list.js'
 import emailFilter from '../../cmps/email/email-filter.js'
 import emailCompose from '../../cmps/email/email-compose.js'
 import emailDetails from '../../cmps/email/email-details.js'
+import emailStatus from '../../cmps/email/email-status.js'
 
 
 
@@ -15,6 +16,7 @@ export default {
             <email-list :emails="emails"  @selected="selectEmail"></email-list>
             <email-details :email="selectedEmail" ></email-details>
             <email-compose></email-compose>
+            <email-status></email-status>
         <router-view></router-view>
     </section>
     `,
@@ -55,7 +57,8 @@ export default {
         emailList,
         emailFilter,
         emailCompose,
-        emailDetails
+        emailDetails,
+        emailStatus
 
     }
 }
