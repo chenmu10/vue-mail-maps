@@ -1,0 +1,23 @@
+@import './base.css';
+@import './helpers.css';
+@import './toggle-btn.css';
+@import './user-msg.css';
+
+.gothic {
+    font-family: 'Gothic';
+}
+.container {
+    max-width: 1050px;
+    /* margin: 0 auto; */
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+header{
+    background-color: lightblue;
+    background-image: url(../img/cloud.png);
+    color: #fff;
+    text-align: center;
+ }
+

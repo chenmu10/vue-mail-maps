@@ -1,0 +1,20 @@
+.user-msg{
+    position: fixed;
+    min-width: 200px;
+    top: 3px;
+    right: 3px;
+    color: #fff;
+    z-index: 100;
+    background-color: lightgray;
+    padding: 0.5em 1em;
+}
+
+.user-msg button{
+    float: right;
+}
+.user-msg.success {
+    background-color: lightgreen
+}
+.user-msg.error {
+    background-color: lightsalmon;
+}

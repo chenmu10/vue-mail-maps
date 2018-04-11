@@ -1,0 +1,16 @@
+/*-------Global---------*/
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Gothic';
+    font-size: 16px;
+    text-transform:initial;
+    color: #d2daed;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
