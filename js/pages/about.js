@@ -8,7 +8,7 @@ export default {
         Happy? {{isHappy}}
         <br/><br/><br/> 
         <toggle-btn v-model="isHappy"></toggle-btn>
-        <button @click="goHome">Go Home</button>
+        <button class="button" @click="goHome">Go Home</button>
     </section>
     `,
     data() {
