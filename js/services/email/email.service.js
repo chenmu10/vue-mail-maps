@@ -40,7 +40,7 @@ function query(filter = null) {
             }
             emailsDB = dummyDB;
             if (filter === null) return emailsDB;
-            else return emailsDB.filter(email => email.vendor.includes(filter.byVendor))
+            else return emailsDB.filter(email => email.isRead === filter.isRead)
         })
 }
 
@@ -61,7 +61,7 @@ function deleteEmail(emailId) {
 }
 
 
-function saveEmail(car) {
+function addEmail(car) {
     return storageService.load(KEY)
         .then(cars => {
             if (car.id) {
