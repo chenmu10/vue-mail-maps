@@ -30,7 +30,7 @@ var dummyDB = [
 
 const KEY = 'emailAppKey';
 
-function query(filter = {isRead: false}) {
+function query(filter = null) {
     return storageService.load(KEY)
         .then(emails => {
             if (!emails) {
