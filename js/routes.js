@@ -1,8 +1,8 @@
 import home from './pages/home.js'
 import about from './pages/about.js'
 import emailApp from './pages/email/email-app.js';
-import emailDetails from './pages/email/email-details.js';
-import emailCompose from './pages/email/email-compose.js';
+import emailDetails from './cmps/email/email-details.js';
+import emailCompose from './cmps/email/email-compose.js';
 import mapApp from './pages/map/map-app.js';
 
 

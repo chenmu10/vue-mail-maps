@@ -85,9 +85,27 @@ function addEmail(email) {
         });
 }
 
+function getUnreadCount() {
+    return storageService.load(KEY)
+    .then(emails => {
+        emails = dummyDB;
+        let unreadEmails = emails.filter(email => email.isRead === false)
+        return unreadEmails.length;
+    })
+    
+}
+
+// TODO : filter by subject and body. return promise.
+function filterEmails(filterBy) {
+    let filteredEmails = emails.filter(email => email.subject === filterBy.subject)
+
+}
+
 export default {
     query,
     getById,
     deleteEmail,
-    addEmail
+    addEmail,
+    getUnreadCount,
+    filterEmails
 }

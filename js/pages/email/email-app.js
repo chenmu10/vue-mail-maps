@@ -13,6 +13,7 @@ export default {
             console.log('query filter:',emails);
             
         })
+       
         // emailService.addEmail({body:'a',subject:'b'})
         // .then (emails => {
         //     // console.log(emails);
