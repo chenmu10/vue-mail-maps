@@ -4,7 +4,7 @@ export default {
     props:{emails:{type: Array, required: true}},
     template: `
     <section class="email-list section">
-        <h1>Email list</h1>
+        <h1 class="title is-3">Email list</h1>
 
          <ul>
                 <li v-for="(email, idx) in emails" :key="email.id">

@@ -8,44 +8,49 @@ import emailDetails from '../../cmps/email/email-details.js'
 
 
 export default {
-    template:`
+    template: `
     <section class="email-app container">
         <h1>Email App</h1>
             <email-filter></email-filter>
-            <email-list :emails="emails"></email-list>
-            <email-details></email-details>
+            <email-list :emails="emails"  @selected="selectEmail"></email-list>
+            <email-details :email="selectedEmail" ></email-details>
             <email-compose></email-compose>
         <router-view></router-view>
     </section>
     `,
     data() {
         return {
-            emails: []
+            emails: [],
+            filter: null,
+            selectedEmail: null,
+            filteredEmails: [],
         }
     },
     created() {
         emailService.query()
-        .then (emails => {
-            console.log('email-app:got emails query filter:',emails);
-            this.emails=emails
-        })
-       
-        // emailService.addEmail({body:'a',subject:'b'})
-        // .then (emails => {
-        //     // console.log(emails);
-            
-        // }),
-        // emailService.getById(1)
-        // .then (emails => {
-        //     // console.log('get by id:',emails);
-            
-        // }),
-        // emailService.deleteEmail(1)
-        // .then (emails => {
-        // })
-        
+            .then(emails => {
+                console.log('email-app:got emails query filter:', emails);
+                this.emails = emails;
+                console.log('emails',this.emails);
+                this.selectedEmail= emails[0];
+                console.log('selected',this.selectedEmail);
+            })
+
+
     }
     ,
+    methods: {
+        selectEmail(){
+            this.selectedEmail = this.emails[0]
+        },
+        setFilter(filterBy){
+            this.filter  = filterBy;
+            emailService.filterEmails(this.emails, this.filter)
+                .then(curEmails => {
+                    this.filteredEmails = currEmails
+                });
+        }
+    },
     components: {
         emailList,
         emailFilter,
