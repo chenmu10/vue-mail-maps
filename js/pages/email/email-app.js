@@ -1,9 +1,15 @@
 import emailService from "../../services/email/email.service.js";
 
+
+
 export default {
     template:`
     <section class="email-app">
         <h1>Email App</h1>
+            <!-- <email-filter><email-filter>
+            <email-list></email-list>
+            <email-details></email-details>
+            <email-compose></email-compose> -->
         <router-view></router-view>
     </section>
     `,
