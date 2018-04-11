@@ -61,17 +61,19 @@ function deleteEmail(emailId) {
 }
 
 
-function addEmail(car) {
+function addEmail(email) {
     return storageService.load(KEY)
-        .then(cars => {
-            if (car.id) {
-                var carIdx = cars.findIndex(currCar => currCar.id === car.id)
-                cars.splice(carIdx, 1, car);
-            } else {
-                car.id = Date.now();
-                cars.push(car);
-            }
-            return storageService.store(KEY, cars);
+        .then(emails => {
+            emails = dummyDB;
+            
+                email.id = Date.now();
+                email.sentAt = Date.now();
+                email.isRead = false;
+
+                emails.push(email);
+            console.log('emails:',emails);
+            
+            // return storageService.store(KEY, cars);
         });
 }
 
@@ -79,5 +81,5 @@ export default {
     query,
     getById,
     deleteEmail,
-    saveEmail
+    addEmail
 }

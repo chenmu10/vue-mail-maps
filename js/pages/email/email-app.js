@@ -12,6 +12,11 @@ export default {
         .then (emails => {
             console.log(emails);
             
+        }),
+        emailService.addEmail({body:'a',subject:'b'})
+        .then (emails => {
+            console.log(emails);
+            
         })
     }
 }
