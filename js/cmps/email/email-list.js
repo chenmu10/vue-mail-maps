@@ -1,4 +1,5 @@
 import emailPreview from './email-preview.js'
+import emailStatus from './email-status.js'
 
 export default {
     props:{emails:{type: Array, required: true}},
@@ -19,7 +20,8 @@ export default {
         }
     },
     components: {
-        emailPreview
+        emailPreview,
+        emailStatus
     }
 }
 
