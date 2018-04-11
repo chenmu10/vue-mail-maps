@@ -1,7 +1,12 @@
 export default {
-    template:`
-    <section class="email-list">
-        <h1>Email list</h1>
+    props: {email:{type: Object, required: true}},
+   
+   template:`
+     <section>
+        <h1>{{email.subject}}</h1>
+        <p> read: {{email.isRead}} </p>
     </section>
     `
 }
+
+

@@ -1,18 +1,25 @@
+import emailPreview from './email-preview.js'
+
 export default {
-    props: ['emails'],
+    props:{emails:{type: Array, required: true}},
     template: `
-    <section class="email-list">
+    <section class="email-list section">
         <h1>Email list</h1>
 
          <ul>
-                <li v-for="email in emails">
-                    {{email}}
+                <li v-for="(email, idx) in emails" :key="email.id">
+                  <email-preview :email="email" @click.native="emitSelected(idx)"> </email-preview>
                 </li>
         </ul>
     </section>
     `,
     data() {
         return {
+          
         }
     },
+    components: {
+        emailPreview
+    }
 }
+
