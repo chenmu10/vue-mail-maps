@@ -30,7 +30,7 @@ var dummyDB = [
 
 const KEY = 'emailAppKey';
 
-function query(filter = null) {
+function query(filter = {isRead: false}) {
     return storageService.load(KEY)
         .then(emails => {
             if (!emails) {
@@ -47,6 +47,9 @@ function query(filter = null) {
 function getById(emailId) {
     return storageService.load(KEY)
         .then(emails => {
+            emails = dummyDB;
+            console.log('emails:',emails);
+            
             return emails.find(email => email.id === emailId);
         })
 }
@@ -54,9 +57,14 @@ function getById(emailId) {
 function deleteEmail(emailId) {
     return storageService.load(KEY)
         .then(emails => {
+            console.log('test');
+            
+            emails = dummyDB;
             var emailIdx = emails.findIndex(email => email.id === emailId);
-            email.splice(emailIdx, 1);
-            return storageService.store(KEY, emails);
+            emails.splice(emailIdx, 1);
+            console.log('delete email:',emails);
+            
+            // return storageService.store(KEY, emails);
         })
 }
 

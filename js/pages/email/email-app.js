@@ -10,13 +10,22 @@ export default {
     created() {
         emailService.query()
         .then (emails => {
-            console.log(emails);
-            
-        }),
-        emailService.addEmail({body:'a',subject:'b'})
-        .then (emails => {
-            console.log(emails);
+            console.log('query filter:',emails);
             
         })
+        // emailService.addEmail({body:'a',subject:'b'})
+        // .then (emails => {
+        //     // console.log(emails);
+            
+        // }),
+        // emailService.getById(1)
+        // .then (emails => {
+        //     // console.log('get by id:',emails);
+            
+        // }),
+        // emailService.deleteEmail(1)
+        // .then (emails => {
+        // })
+        
     }
 }
