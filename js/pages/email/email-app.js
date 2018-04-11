@@ -10,11 +10,11 @@ import emailStatus from '../../cmps/email/email-status.js'
 
 export default {
     template: `
-    <section class="email-app container">
+    <section class="email-app section">
         <h1>Email App</h1>
             <email-filter></email-filter>
             <email-list :emails="emails"  @selected="selectEmail"></email-list>
-            <email-details :email="selectedEmail" ></email-details>
+            <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
             <email-compose></email-compose>
             <email-status></email-status>
         <router-view></router-view>
