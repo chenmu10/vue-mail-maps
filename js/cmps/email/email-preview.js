@@ -1,6 +1,11 @@
 export default {
   props: { email: { type: Object, required: true } },
-
+  computed: {
+    formattedDate() {
+      return moment(this.email.sentAt).fromNow()
+    }
+  }
+  ,
   template: `
 <article class="media">
   <figure v-if="email.isRead" class="media-left">
@@ -20,7 +25,7 @@ export default {
       <p>
         {{email.subject}}
         <br>
-        {{email.body}}
+        {{email.body.substring(0,50)}}...
       </p>
     </div>
     <nav class="level is-mobile">
@@ -38,7 +43,8 @@ export default {
     </nav>
   </div>
   <div class="media-right">
-  {{email.sentAt}}
+  {{formattedDate}}
+  <!-- moment(email.sentAt).format('LT') -->
   </div>
 </article>
      <!-- <section>

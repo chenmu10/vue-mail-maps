@@ -10,22 +10,22 @@ var dummyDB = [
         subject: 'hello world',
         body: 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
         isRead: true,
-        sentAt: '11.11.17'
+        sentAt: 1523533672000
     },
     {
         id: 2,
         subject: 'coding academy',
         body: 'coding ipsum coding ipsum lorem coding lorem ipsum',
         isRead: false,
-        sentAt: moment(Date.now()).format('LT')
+        sentAt: Date.now()
     },
     {
         id: 3,
         subject: 'lorem ipsum',
         body: 'test body lorem ipsum js ipsum lorem ipsum',
         isRead: true,
-        sentAt: '11.11.17'
-    },
+        sentAt: 1511997672000
+    }
 ]
 
 const KEY = 'emailAppKey';
