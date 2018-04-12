@@ -43,8 +43,8 @@ export default {
         selectEmail(idx) {
             this.selectedEmail = this.emails[idx]
         },
-        setFilter(filterBy) {
-            emailService.query(filterBy)
+        setFilter(filter) {
+            emailService.query(filter)
                 .then(emails => {
                     console.log('email-app:got emails query FILTER:', emails);
                     this.emails = emails;
