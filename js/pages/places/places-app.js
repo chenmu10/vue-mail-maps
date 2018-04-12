@@ -4,6 +4,12 @@ import placeList from '../../cmps/places/place-list.js'
 import placeDetails from '../../cmps/places/place-details.js'
 
 export default {
+    data() {
+        return {
+            places: [],
+            selectedPlaces: null,
+        }
+    },
     template: `
     <section class="places-app container">
         <h1>places App</h1>
@@ -18,16 +24,29 @@ export default {
         </div>
     </div>
 
-   <place-list></place-list>
+   <place-list :places="places"  @selected="selectPlace"></place-list>
 
-   
-   <place-details></place-details>
+
+   <place-details  :email="selectedPlace" ></place-details>
 
     
 
 
     </section>
     `,
+     methods: {
+        selectPlace(idx) {
+            this.selectedPlace = this.places[idx];
+            
+            
+        },
+        setFilter(filter) {
+        },
+        saveEmail(email) {
+
+        }
+        
+    },
     components: {
         placesService,
         placeList,

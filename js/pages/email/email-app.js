@@ -25,7 +25,7 @@ export default {
             <section class="email-body">
                 <email-list :emails="emails"  @selected="selectEmail" ></email-list>
                 <!-- <div class="emailapp-details"> -->
-                    <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
+                <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
 
                 <!-- </div> -->
             </section>
