@@ -96,7 +96,6 @@ function deleteEmail(emailId) {
 function addEmail(email) {
     return storageService.load(KEY)
         .then(emails => {
-            emails = dummyDB;
 
             email.id = Date.now();
             email.sentAt = Date.now();
@@ -105,7 +104,7 @@ function addEmail(email) {
             emails.push(email);
             console.log('emails:', emails);
 
-            // return storageService.store(KEY, cars);
+             return storageService.store(KEY, emails);
         });
 }
 
