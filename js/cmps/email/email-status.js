@@ -1,3 +1,5 @@
+import emailService from "../../services/email/email.service.js";
+
 export default {
     // props: {emails:{type: object, required: true}},
     template:`

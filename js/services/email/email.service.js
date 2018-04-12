@@ -112,11 +112,10 @@ function addEmail(email) {
 function getUnreadCount() {
     return storageService.load(KEY)
         .then(emails => {
-            emails = dummyDB;
-            let unreadEmails = emails.filter(email => email.isRead === false)
+            // emails = dummyDB;
+            let unreadEmails = emails.filter(email => !email.isRead)
             return unreadEmails.length;
         })
-
 }
 
 

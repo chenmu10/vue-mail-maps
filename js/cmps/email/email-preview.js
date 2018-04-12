@@ -4,8 +4,7 @@ export default {
     formattedDate() {
       return moment(this.email.sentAt).fromNow()
     }
-  }
-  ,
+  },
   template: `
   <div class="box">
 <article class="media">
