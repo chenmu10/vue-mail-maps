@@ -3,7 +3,7 @@ import about from './pages/about.js'
 import emailApp from './pages/email/email-app.js';
 import emailDetails from './cmps/email/email-details.js';
 import emailCompose from './cmps/email/email-compose.js';
-import mapApp from './pages/map/map-app.js';
+import placesApp from './pages/places/places-app.js';
 
 
 
@@ -18,7 +18,7 @@ const routes = [
   },
   // { path: '/email/compose', component: emailCompose },
   // { path: '/email/:emailId?', component: emailDetails },
-  { path: '/map', component: mapApp },
+  { path: '/places', component: placesApp },
 
 
 
