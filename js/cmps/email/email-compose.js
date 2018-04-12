@@ -1,14 +1,16 @@
+import emailService from "../../services/email/email.service.js";
+
 export default {
-    
+
     data() {
         return {
-            email: { subject: '',body:'' }
+            email: { id:'',subject: '', body: '',isRead:'',sentAt:'' }
         }
     },
-    template:`
+    template: `
      <section class="email-compose section">
         <h1 class="title is-1">Email compose</h1>
-   
+   <form @submit.prevent="saveEmail">
                         
             <div class="field is-horizontal">
             <div class="field-label is-normal">
@@ -17,7 +19,7 @@ export default {
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <input class="input" type="text" v-model="email.subject">
+                    <input class="input" type="text" v-model="email.subject" >
                 </div>
                 <p class="help">
                     This field is required
@@ -46,14 +48,27 @@ export default {
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <button class="button is-primary">
-                    Send message
+                    <button type="submit" class="button is-primary">
+                    Send email
                     </button>
                 </div>
                 </div>
             </div>
             </div>                            
-               
+</form>
         </section>
-    `
+    `,
+    methods: {
+        saveEmail() {
+            console.log(this.email);
+            emailService.addEmail(this.email)
+                .then(emails => {
+                    console.log('saved');
+                })
+        }
+    },
+    components: {
+        emailService
+
+    }
 }
