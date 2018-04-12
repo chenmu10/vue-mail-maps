@@ -50,8 +50,9 @@ export default {
     methods: {
         selectEmail(idx) {
             this.selectedEmail = this.emails[idx];
-            this.selectedEmail.isRead = true;
-            
+            if (this.selectedEmail.isRead) {
+                this.selectedEmail.isRead = false;
+            } else this.selectedEmail.isRead = true;
         },
         setFilter(filter) {
             emailService.query(filter)

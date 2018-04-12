@@ -51,6 +51,7 @@ export default {
             this.$emit('selected',idx);
         },
         sortEmails(sortBy) {
+            debugger;
             if (sortBy==='subject') {
                 this.emails.sort(function(a, b){
                     if(a.subject < b.subject) return -1;
