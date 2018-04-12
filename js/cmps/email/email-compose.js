@@ -19,7 +19,7 @@ export default {
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <input class="input" type="text" v-model="email.subject" >
+                    <input class="input" type="text" v-model="email.subject" required >
                 </div>
                 <p class="help">
                     This field is required
