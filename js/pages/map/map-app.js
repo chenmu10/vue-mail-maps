@@ -2,7 +2,9 @@ export default {
     template: `
     <section class="map-app container">
         <h1>Map App</h1>
-        <div class="map-container">
+
+
+    <div class="map-container">
         <h1 class="title is-2">Map-container</h1>
         <input type="text" name="search" placeholder="search">
         <button>My location</button>
@@ -18,7 +20,6 @@ export default {
             <ul>
                 <li>loc1</li>
                 <li>loc2</li>
-
             </ul>
         </div>
     </div>
@@ -36,8 +37,9 @@ export default {
             <button>Delete</button>
             <button>Add to my places</button>
         </form>
-
     </div>
+
+    
     </section>
     `
 }
