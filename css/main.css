@@ -21,3 +21,18 @@ header{
     text-align: center;
  }
 
+ .email-body {
+     display: grid;
+     grid-template-columns: 2fr 5fr;
+ }
+
+ .emailapp-details {
+ }
+
+ .compost-btn {
+ }
+/* 
+ .email-list {
+     display: grid;
+     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+ } */

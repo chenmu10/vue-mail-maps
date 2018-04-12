@@ -20,10 +20,15 @@ export default {
     <section class="email-app section">
         <h1>Email App</h1>
             <email-filter @filtered="setFilter"></email-filter>
+            <button class="button is-link is-medium compost-btn">Compose</button>
             
-            <email-list :emails="emails"  @selected="selectEmail" ></email-list>
-            <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
-            <button class="button is-link is-medium">Compose</button>
+            <section class="email-body">
+                <email-list :emails="emails"  @selected="selectEmail" ></email-list>
+                <!-- <div class="emailapp-details"> -->
+                    <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
+
+                <!-- </div> -->
+            </section>
             <email-compose></email-compose>
             <email-status></email-status>
         <router-view></router-view>
