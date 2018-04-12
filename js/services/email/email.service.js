@@ -31,25 +31,61 @@ var dummyDB = [
 const KEY = 'emailAppKey';
 
 function query(filter = null) {
+
     return storageService.load(KEY)
         .then(emails => {
             if (!emails) {
                 emailsDB = dummyDB;
-                console.log('emails DB:',emailsDB);
-                
+                console.log('emails DB:', emailsDB);
+
             }
             emailsDB = dummyDB;
-            if (filter === null) return emailsDB;
-            else return emailsDB.filter(email => email.isRead === filter.isRead)
+
+            if (filter === null) {
+                return emailsDB;
+            } else {
+                let filteredEmails = filterEmails(filter);
+                return filteredEmails;
+            }
+            
         })
+
+
 }
+
+function filterEmails(filter) {
+    
+    let isReadFilter;
+    let filteredEmails;
+    switch (filter.byRead) {
+        case 'read':
+            isReadFilter = true;
+            break;
+        case 'unread':
+            isReadFilter = false;
+            break;
+        default:
+            isReadFilter = null;
+            break;
+    }
+
+    if (isReadFilter !== null) {
+        filteredEmails = emailsDB.filter(email => email.isRead === isReadFilter)
+    }
+    debugger;
+
+    filteredEmails = emailsDB.filter(email => email.subject === filter.bySubject || email.subject  === '' && email.body === filter.byBody||  email.body === '');
+    return filteredEmails;
+
+}
+
 
 function getById(emailId) {
     return storageService.load(KEY)
         .then(emails => {
             emails = dummyDB;
-            console.log('emails:',emails);
-            
+            console.log('emails:', emails);
+
             return emails.find(email => email.id === emailId);
         })
 }
@@ -58,12 +94,12 @@ function deleteEmail(emailId) {
     return storageService.load(KEY)
         .then(emails => {
             console.log('test');
-            
+
             emails = dummyDB;
             var emailIdx = emails.findIndex(email => email.id === emailId);
             emails.splice(emailIdx, 1);
-            console.log('delete email:',emails);
-            
+            console.log('delete email:', emails);
+
             // return storageService.store(KEY, emails);
         })
 }
@@ -73,42 +109,29 @@ function addEmail(email) {
     return storageService.load(KEY)
         .then(emails => {
             emails = dummyDB;
-            
-                email.id = Date.now();
-                email.sentAt = Date.now();
-                email.isRead = false;
 
-                emails.push(email);
-            console.log('emails:',emails);
-            
+            email.id = Date.now();
+            email.sentAt = Date.now();
+            email.isRead = false;
+
+            emails.push(email);
+            console.log('emails:', emails);
+
             // return storageService.store(KEY, cars);
         });
 }
 
 function getUnreadCount() {
     return storageService.load(KEY)
-    .then(emails => {
-        emails = dummyDB;
-        let unreadEmails = emails.filter(email => email.isRead === false)
-        return unreadEmails.length;
-    })
-    
-}
-
-// TODO : filter by subject and body. return promise.
-function filterEmails(filterBy) {
-    return storageService.load(KEY)
         .then(emails => {
-            if (!emails) {
-                emailsDB = dummyDB;
-                console.log('emails DB:',emailsDB);
-                
-            }
-            emailsDB = dummyDB;
-            return emailsDB.filter(email => email.subject === filterBy.subject)
+            emails = dummyDB;
+            let unreadEmails = emails.filter(email => email.isRead === false)
+            return unreadEmails.length;
         })
 
 }
+
+
 
 export default {
     query,

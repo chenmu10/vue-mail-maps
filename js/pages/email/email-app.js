@@ -13,15 +13,14 @@ export default {
         return {
             emails: [],
             selectedEmail: null,
-            filter: null,
         }
     },
 
     template: `
     <section class="email-app section">
         <h1>Email App</h1>
-            <email-filter></email-filter>
-            <email-list :emails="emails"  @selected="selectEmail" @filtered="setFilter"></email-list>
+              <email-filter @filtered="setFilter"></email-filter>
+            <email-list :emails="emails"  @selected="selectEmail" ></email-list>
             <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
             <email-compose></email-compose>
             <email-status></email-status>
@@ -32,7 +31,8 @@ export default {
     created() {
         emailService.query()
             .then(emails => {
-                console.log('email-app:got emails query filter:', emails);
+
+                console.log('email-app:got emails query :', emails);
                 this.emails = emails;
                 this.selectedEmail = emails[0];
             })
@@ -45,13 +45,13 @@ export default {
             this.selectedEmail.isRead = true;
             
         },
-        setFilter(filterBy) {
-            this.filter = filterBy;
-            emailService.filterEmails(this.emails, this.filter)
-                .then(filteredEmails => {
-                    console.log('filtered: ',filteredEmails);
-                    this.emails = filteredEmails
-                });
+        setFilter(filter) {
+            emailService.query(filter)
+                .then(emails => {
+                    console.log('email-app:got emails query FILTER:', emails);
+                    this.emails = emails;
+                    this.selectedEmail = emails[0];
+                })
         }
     },
     components: {
