@@ -19,6 +19,11 @@ export default {
           
         }
     },
+    methods: {
+        emitSelected(idx) {
+            this.$emit('selected',idx);
+        }
+    },
     components: {
         emailPreview,
         emailStatus

@@ -9,47 +9,46 @@ import emailStatus from '../../cmps/email/email-status.js'
 
 
 export default {
+    data() {
+        return {
+            emails: [],
+            selectedEmail: null,
+            filter: null,
+        }
+    },
+
     template: `
     <section class="email-app section">
         <h1>Email App</h1>
             <email-filter></email-filter>
-            <email-list :emails="emails"  @selected="selectEmail"></email-list>
+            <email-list :emails="emails"  @selected="selectEmail" @filtered="setFilter"></email-list>
             <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
             <email-compose></email-compose>
             <email-status></email-status>
         <router-view></router-view>
     </section>
     `,
-    data() {
-        return {
-            emails: [],
-            filter: null,
-            selectedEmail: null,
-            filteredEmails: [],
-        }
-    },
+
     created() {
         emailService.query()
             .then(emails => {
                 console.log('email-app:got emails query filter:', emails);
                 this.emails = emails;
-                console.log('emails',this.emails);
-                this.selectedEmail= emails[0];
-                console.log('selected',this.selectedEmail);
+                this.selectedEmail = emails[0];
             })
-
 
     }
     ,
     methods: {
-        selectEmail(){
-            this.selectedEmail = this.emails[0]
+        selectEmail(idx) {
+            this.selectedEmail = this.emails[idx]
         },
-        setFilter(filterBy){
-            this.filter  = filterBy;
+        setFilter(filterBy) {
+            this.filter = filterBy;
             emailService.filterEmails(this.emails, this.filter)
-                .then(curEmails => {
-                    this.filteredEmails = currEmails
+                .then(filteredEmails => {
+                    console.log('filtered: ',filteredEmails);
+                    this.emails = filteredEmails
                 });
         }
     },
