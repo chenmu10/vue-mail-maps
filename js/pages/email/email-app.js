@@ -19,7 +19,8 @@ export default {
     template: `
     <section class="email-app section">
         <h1>Email App</h1>
-              <email-filter @filtered="setFilter"></email-filter>
+            <email-filter @filtered="setFilter"></email-filter>
+            
             <email-list :emails="emails"  @selected="selectEmail" ></email-list>
             <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
             <button class="button is-link is-medium">Compose</button>

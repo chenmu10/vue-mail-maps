@@ -35,7 +35,7 @@ export default {
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <textarea class="textarea" v-model="email.body" ></textarea>
+                    <textarea class="textarea" v-model="email.body" rows="10"></textarea>
                 </div>
                 </div>
             </div>
