@@ -7,6 +7,7 @@ export default {
   }
   ,
   template: `
+  <div class="box">
 <article class="media">
   <figure v-if="email.isRead" class="media-left">
     <p class="icon is-small">
@@ -43,10 +44,12 @@ export default {
     </nav>
   </div>
   <div class="media-right">
-  {{formattedDate}}
-  <!-- moment(email.sentAt).format('LT') -->
+    <div class="tag is-info">
+    {{formattedDate}}
+    </div>
   </div>
 </article>
+</div>
      <!-- <section>
         <h1>{{email.subject}}</h1>
         <p> read: {{email.isRead}} </p>
