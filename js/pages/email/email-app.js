@@ -41,7 +41,9 @@ export default {
     ,
     methods: {
         selectEmail(idx) {
-            this.selectedEmail = this.emails[idx]
+            this.selectedEmail = this.emails[idx];
+            this.selectedEmail.isRead = true;
+            
         },
         setFilter(filterBy) {
             this.filter = filterBy;

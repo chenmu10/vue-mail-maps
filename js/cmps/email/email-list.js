@@ -9,7 +9,7 @@ export default {
 
          <ul>
                 <li v-for="(email, idx) in emails" :key="email.id">
-                  <email-preview :email="email" @click.native="emitSelected(idx)"> </email-preview>
+                  <email-preview :email="email" @click.native="emitSelected(idx)" > </email-preview>
                 </li>
         </ul>
     </section>

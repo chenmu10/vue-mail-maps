@@ -10,6 +10,9 @@
     padding: 0;
 }
 
+.bold {
+    font-weight: bold;
+}
 
 /*---flex---*/
 
