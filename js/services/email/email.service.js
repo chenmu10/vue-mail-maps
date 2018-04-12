@@ -7,8 +7,8 @@ var emailsDB = [];
 var dummyDB = [
     {
         id: 1,
-        subject: 'hello world',
-        body: 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
+        subject: 'subject one',
+        body: 'the first email is this',
         isRead: true,
         sentAt: 1523533672000
     },
@@ -21,7 +21,7 @@ var dummyDB = [
     },
     {
         id: 3,
-        subject: 'lorem ipsum',
+        subject: 'third subject',
         body: 'test body lorem ipsum js ipsum lorem ipsum',
         isRead: true,
         sentAt: 1511997672000
@@ -34,12 +34,13 @@ function query(filter = null) {
 
     return storageService.load(KEY)
         .then(emails => {
+          
             if (!emails) {
-                emailsDB = dummyDB;
-                console.log('emails DB:', emailsDB);
-
+                emails = dummyDB;
+                storageService.store(KEY, emails)
             }
-            emailsDB = dummyDB;
+
+            emailsDB = emails;
 
             if (filter === null) {
                 return emailsDB;
@@ -55,26 +56,13 @@ function query(filter = null) {
 
 function filterEmails(filter) {
     
-    let isReadFilter;
-    let filteredEmails;
-    switch (filter.byRead) {
-        case 'read':
-            isReadFilter = true;
-            break;
-        case 'unread':
-            isReadFilter = false;
-            break;
-        default:
-            isReadFilter = null;
-            break;
-    }
+    let filteredEmails = emailsDB
 
-    if (isReadFilter !== null) {
+    if (filter.byRead !== 'all') {
+        let isReadFilter = (filter.byRead === 'read')
         filteredEmails = emailsDB.filter(email => email.isRead === isReadFilter)
     }
-    debugger;
-
-    filteredEmails = emailsDB.filter(email => email.subject === filter.bySubject || email.subject  === '' && email.body === filter.byBody||  email.body === '');
+    filteredEmails = filteredEmails.filter(email => email.subject.includes(filter.byText)  || email.body.includes(filter.byText) );
     return filteredEmails;
 
 }
