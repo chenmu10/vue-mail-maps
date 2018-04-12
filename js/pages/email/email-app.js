@@ -22,6 +22,7 @@ export default {
               <email-filter @filtered="setFilter"></email-filter>
             <email-list :emails="emails"  @selected="selectEmail" ></email-list>
             <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
+            <button class="button is-link is-medium">Compose</button>
             <email-compose></email-compose>
             <email-status></email-status>
         <router-view></router-view>
@@ -35,6 +36,7 @@ export default {
                 console.log('email-app:got emails query :', emails);
                 this.emails = emails;
                 this.selectedEmail = emails[0];
+
             })
 
     }

@@ -12,11 +12,17 @@ export default {
     },
     template: `
         <section class="section email-filter">
-            <label>
-                <input placeholder="search" type="text" v-model="filter.byText" @input="emitFilter" />
-            </label> 
           
-            <div class="field">
+          
+
+
+  <div class="control">
+    <input class="input" type="text" placeholder="Search" v-model="filter.byText" @input="emitFilter">
+  </div>
+  
+
+
+            <!-- <div class="field">
             <div class="control">
                 <div class="select is-info">
                 <select>
@@ -26,7 +32,7 @@ export default {
                 </select>
                 </div>
             </div>
-            </div>
+            </div> -->
 
 
 
