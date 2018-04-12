@@ -4,8 +4,9 @@ export default {
    template:`
 <article class="media">
   <figure class="media-left">
-    <p class="image is-64x64">
-      <img src="https://bulma.io/images/placeholders/128x128.png">
+    <p  class="icon is-small">
+      <i v-if="email.isRead" class="fas fa-envelope-open"></i>
+      <i v-else="!email.isRead" class="fas fa-envelope"></i>
     </p>
   </figure>
   <div class="media-content">
@@ -18,7 +19,7 @@ export default {
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item">
+        <!-- <a class="level-item">
           <span class="icon is-small"><i class="fas fa-reply"></i></span>
         </a>
         <a class="level-item">
@@ -26,7 +27,7 @@ export default {
         </a>
         <a class="level-item">
           <span class="icon is-small"><i class="fas fa-heart"></i></span>
-        </a>
+        </a> -->
       </div>
     </nav>
   </div>

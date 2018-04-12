@@ -17,7 +17,7 @@ var dummyDB = [
         subject: 'coding academy',
         body: 'coding ipsum coding ipsum lorem coding lorem ipsum',
         isRead: false,
-        sentAt: '01.10.15'
+        sentAt: moment().format('MMM DD h:mm A')
     },
     {
         id: 3,
