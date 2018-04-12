@@ -55,7 +55,8 @@ export default {
                     this.emails = emails;
                     this.selectedEmail = emails[0];
                 })
-        }
+        },
+        
     },
     components: {
         emailList,

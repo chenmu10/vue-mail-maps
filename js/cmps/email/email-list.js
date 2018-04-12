@@ -14,7 +14,18 @@ export default {
     template: `
     <section class="email-list section">
         <h1 class="title is-3">Email list</h1>
-
+        <button class="button" @click="sortEmails('subject')">
+            <span class="icon">
+            <i class="fas fa-sort-alpha-down"></i>
+            </span>
+            <span>Subject</span>
+             </button>
+        <button class="button" @click="sortEmails('time')">
+            <span class="icon">
+            <i class="fas fa-sort-amount-up"></i>
+            </span>
+            <span>Date</span>
+             </button>
         <div v-if="unreadCount" class="tags has-addons">
         <span class="tag">Unread emails:</span>
         <span class="tag is-danger">{{unreadCount}}</span>
@@ -38,7 +49,23 @@ export default {
     methods: {
         emitSelected(idx) {
             this.$emit('selected',idx);
-        }
+        },
+        sortEmails(sortBy) {
+            if (sortBy==='subject') {
+                this.emails.sort(function(a, b){
+                    if(a.subject < b.subject) return -1;
+                    if(a.subject > b.subject) return 1;
+                    return 0;
+                })
+            } else if (sortBy==='time'){
+                this.emails.sort();
+            }
+
+            this.emails.sort(function (emailA, emailB) {
+                return emailB.sentAt - emailA.sentAt;
+              });
+         
+        },
     },
     components: {
         emailPreview,
