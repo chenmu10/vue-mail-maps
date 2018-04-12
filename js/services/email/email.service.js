@@ -97,7 +97,16 @@ function getUnreadCount() {
 
 // TODO : filter by subject and body. return promise.
 function filterEmails(filterBy) {
-    let filteredEmails = emails.filter(email => email.subject === filterBy.subject)
+    return storageService.load(KEY)
+        .then(emails => {
+            if (!emails) {
+                emailsDB = dummyDB;
+                console.log('emails DB:',emailsDB);
+                
+            }
+            emailsDB = dummyDB;
+            return emailsDB.filter(email => email.subject === filterBy.subject)
+        })
 
 }
 
