@@ -29,7 +29,7 @@ export default {
 
                 <!-- </div> -->
             </section>
-            <email-compose></email-compose>
+            <email-compose @saveEmail="saveEmail"></email-compose>
             <email-status></email-status>
         <router-view></router-view>
     </section>
@@ -61,6 +61,13 @@ export default {
                     this.selectedEmail = emails[0];
                 })
         },
+        saveEmail(email) {
+            emailService.addEmail(email)
+            .then(emails => {
+               this.emails = emails
+            })
+
+        }
         
     },
     components: {

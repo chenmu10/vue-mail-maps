@@ -104,7 +104,8 @@ function addEmail(email) {
             emails.push(email);
             console.log('emails:', emails);
 
-             return storageService.store(KEY, emails);
+             storageService.store(KEY, emails);
+             return emails
         });
 }
 

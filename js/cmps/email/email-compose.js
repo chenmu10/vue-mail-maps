@@ -61,10 +61,7 @@ export default {
     methods: {
         saveEmail() {
             console.log(this.email);
-            emailService.addEmail(this.email)
-                .then(emails => {
-                    console.log('saved');
-                })
+            this.$emit('saveEmail', this.email)
         }
     },
     components: {
