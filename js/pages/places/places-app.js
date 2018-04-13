@@ -27,7 +27,7 @@ export default {
          <place-list :places="places"  @selected="selectPlace"></place-list>
 
         <place-details v-if="selectedPlace"  :place="selectedPlace" @edit="editPlace" @delete="deletePlace"></place-details>
-        <p v-else>Choose a place to see details</p>
+        <p v-else>{{ selectedPlaceMsg }}</p>
         
     </section>
     `,
@@ -36,7 +36,8 @@ export default {
             gLoc: null,
             places: [],
             selectedPlace: null,
-            filter: null
+            filter: null,
+            selectedPlaceMsg: 'Choose a place to see details'
         }
     },
     created() {
@@ -54,24 +55,27 @@ export default {
             this.selectedPlace = this.places[idx];
         },
         editPlace(place) {
-            console.log('place to edit from emit:',place);
+            console.log('place to edit from emit:', place);
             placeService.editPlace(place)
-            .then(places => {
-               this.places = places;
-            })
+                .then(places => {
+                    this.places = places;
+                })
 
         },
         deletePlace(place) {
-            console.log('place to delete from emit:',place.id);
+            console.log('place to delete from emit:', place.id);
             placeService.deletePlace(place.id)
-            .then(places => {
-               this.places = places;
-            })
+                .then(places => {
+                    this.places = places;
+                })
 
-        },
+            this.selectedPlace = null;
+            this.selectedPlaceMsg = 'Deleted, Choose a place to see details.';
+        }
 
-       
-
+    },
+    computed: {
+        
     },
     components: {
         placeService,
