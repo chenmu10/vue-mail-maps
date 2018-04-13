@@ -7,9 +7,18 @@ export default {
     },
     data() {
         return {
-            currPlace: this.place
+            currPlace: null,
+            isTemp: false
         }
     },
+    created() {
+        this.currPlace = this.place;
+        if (!this.currPlace.id) {
+            this.isTemp=true;
+        } 
+
+    },
+
     computed: {
 
     },
@@ -28,8 +37,9 @@ export default {
     <section class="section">
     <div class="place-details">
         <h1 class="title is-2">place-details</h1>
-        <p>crrPlace:{{ currPlace }}</p>
-        <p>props Place:{{ place }}</p>
+        <p><strong>is temp: </strong>{{ isTemp }}</p>
+        <p><strong>crrPlace: </strong>{{ currPlace }}</p>
+        <p><strong>props Place: </strong>{{ place }}</p>
         <form @submit.prevent>
             <div>  Name:
                   <input type="text" :value="currPlace.name" >
@@ -54,9 +64,11 @@ export default {
              photos:
             <input type="text"  :value="currPlace.imgs[0]">
             </div>
+            <button v-if="isTemp" @click.stop="editPlace">Add to my places</button>
+            <div v-else>
             <button @click.stop="editPlace">Update</button>
             <button @click.stop="deletePlace">Delete</button>
-            <button @click.stop="editPlace">Add to my places</button>
+            </div>
         </form>
     </div>
     </section>

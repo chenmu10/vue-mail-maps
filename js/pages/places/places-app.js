@@ -59,6 +59,9 @@ export default {
             placeService.editPlace(place)
                 .then(places => {
                     this.places = places;
+                    this.selectedPlace = null;
+                    this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
+        
                 })
 
         },
@@ -67,10 +70,11 @@ export default {
             placeService.deletePlace(place.id)
                 .then(places => {
                     this.places = places;
+                    this.selectedPlace = null;
+                    this.selectedPlaceMsg = 'Deleted, Choose a place to see details.';
+        
                 })
 
-            this.selectedPlace = null;
-            this.selectedPlaceMsg = 'Deleted, Choose a place to see details.';
         }
 
     },

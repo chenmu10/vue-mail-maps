@@ -36,7 +36,7 @@ export default {
                     <div class="places-list">
                       <ul>
                         <li v-for="(place, idx) in places" :key="place.id" >
-                       <button @click="emitSelected(idx)">{{place.name}},{{place.id}} </button> 
+                       <button @click="emitSelected(idx)">{{place.name}},{{place.address}} </button> 
                        
                         </li>
                       </ul>

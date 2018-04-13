@@ -102,21 +102,22 @@ function generatePlaces() {
     return places;
 }
 
+var gId = 1;
+
 function createPlace() {
     var loremIpsum = new LoremIpsum();
 
-    var placeYears = [1978, 1999, 2011, 2018];
-    var placeTag = ['food', 'attraction', 'sights'];
-    var placeAddress = ['Tel aviv, israel', 'Jerusalem, israel', 'Haifa, israel'];
+    var placeTags = ['food', 'attraction', 'sights', 'shopping'];
+    var placeAddress = ['Tel aviv, Israel', 'Jerusalem, Israel', 'Haifa, Israel'];
     var placeImgs = ['https/google.com/a.png', 'https/google.com/b.png', 'https/google.com/c.png'];
 
     var place = {
         id: utilService.getRandomString(11),
-        name: 'Place' + ' ' + utilService.getRandomInt(1, 10),
+        name: 'Place' + ' ' + gId++,
         address: placeAddress[utilService.getRandomInt(0, placeAddress.length)],
         coords: {lat:1,lng:1},
         desc: loremIpsum.generate(utilService.getRandomInt(5, 10), utilService.getRandomInt(1, 8)),
-        tag: placeTag[utilService.getRandomInt(0, placeTag.length)],
+        tag: placeTags[utilService.getRandomInt(0, placeTags.length)],
         imgs: placeImgs
     }
 
