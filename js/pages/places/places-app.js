@@ -6,8 +6,8 @@ import placeDetails from '../../cmps/places/place-details.js'
 export default {
     data() {
         return {
-            places: [],
-            selectedPlaces: null,
+            places: [{ name: 'place1' }, { name: 'place2' }, { name: 'place3' }],
+            selectedPlace: { name: 'place1' }
         }
     },
     template: `
@@ -27,13 +27,19 @@ export default {
    <place-list :places="places"  @selected="selectPlace"></place-list>
 
 
-   <place-details  :email="selectedPlace" ></place-details>
+   <place-details v-if="selectedPlace"  :place="selectedPlace" ></place-details>
 
     
 
 
     </section>
     `,
+    created() {
+        
+
+           
+
+    },
      methods: {
         selectPlace(idx) {
             this.selectedPlace = this.places[idx];
@@ -41,9 +47,6 @@ export default {
             
         },
         setFilter(filter) {
-        },
-        saveEmail(email) {
-
         }
         
     },
