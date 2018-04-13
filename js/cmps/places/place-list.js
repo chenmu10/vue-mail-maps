@@ -1,14 +1,11 @@
 
 
 export default {
-    // props: { places: { type: Array, required: true } },
-    data() {
-        return {
-            places: [{ name: 'place1' }, { name: 'place2' }, { name: 'place3' }]
-        }
-    },
+    props: { places: { type: Array, required: true } },
+   
     methods: {
         emitSelected(idx) {
+            console.log('h');
             this.$emit('selected', idx);
         }
     },
@@ -20,9 +17,9 @@ export default {
                     <input type="text" name="search" placeholder="search">
                     <div class="places-list">
                       <ul>
-                        <li v-for="(place, idx) in places" :key="place.id">
-                           <p>{{place.name}}</p>
-                        <!-- <button :place="place" @click.native="emitSelected(idx)" >  </button> -->
+                        <li v-for="(place, idx) in places" :key="place.id" >
+                       <button @click="emitSelected(idx)">{{place.name}} </button> 
+                       
                         </li>
                       </ul>
                     </div>

@@ -1,4 +1,4 @@
-import placesService from "../../services/places/place.service.js";
+import placeService from "../../services/places/place.service.js";
 import placesMap from "../../cmps/places/places-map.js";
 
 import placeList from '../../cmps/places/place-list.js'
@@ -11,7 +11,7 @@ export default {
     data() {
         return {
             places: [],
-            selectedPlaces: null,
+            selectedPlace: { name: null }
         }
     },
     template: `
@@ -29,11 +29,10 @@ export default {
         </div>
     </div>
 
-   <!-- <place-list :places="places"  @selected="selectPlace"></place-list>
+   <place-list :places="places"  @selected="selectPlace"></place-list>
 
 
-   <place-details  :email="selectedPlace" ></place-details> -->
-
+ <place-details v-if="selectedPlace"  :place="selectedPlace" ></place-details>
     
 
 
@@ -42,9 +41,21 @@ export default {
      data() {
         return {
             gLoc: null,
-            places: []
+            places: [],
+            selectedPlace: { name: null }
         }
     },
+    created() {
+        placeService.query()
+            .then(places => {
+
+                console.log('places-app:got places query :', places);
+                this.places = places;
+                this.selectedPlace = places[0];
+
+            })
+
+    }    ,
      methods: {
         selectPlace(idx) {
             this.selectedPlace = this.places[idx];
@@ -52,14 +63,11 @@ export default {
             
         },
         setFilter(filter) {
-        },
-        saveEmail(email) {
-
         }
         
     },
     components: {
-        placesService,
+        placeService,
         placeList,
         placeDetails,
         placesMap
