@@ -19,6 +19,7 @@ export default {
             
             placeService.query(filter)
             .then(places => {
+
                 console.log('places-app:got places query FILTER :', places);
                 this.places = places;
 

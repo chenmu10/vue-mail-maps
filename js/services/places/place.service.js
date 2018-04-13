@@ -11,7 +11,7 @@ export default {
     getById,
     editPlace,
     deletePlace,
-    filterPlaces
+    // filterPlaces
 }
 
 
@@ -40,13 +40,13 @@ function query(filter = null) {
 
 
 
-function filterPlaces(filter) {
+// function filterPlaces(filter) {
 
-    let filteredPlaces = placesDB.filter(place => place.name.includes(filter.byText) || place.address.includes(filter.byText) ||
-        place.desc.includes(filter.byText));
+//     let filteredPlaces = placesDB.filter(place => place.name.includes(filter.byText) || place.address.includes(filter.byText) ||
+//         place.desc.includes(filter.byText));
 
-    return filteredplaces;
-}
+//     return filteredplaces;
+// }
 
 
 function getById(placeId) {
