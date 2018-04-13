@@ -108,15 +108,16 @@ function createPlace() {
     var loremIpsum = new LoremIpsum();
 
     var placeTags = ['food', 'attraction', 'sights', 'shopping'];
-    var placeAddress = ['Tel aviv, Israel', 'Jerusalem, Israel', 'Haifa, Israel'];
-    var placeImgs = ['https/google.com/a.png', 'https/google.com/b.png', 'https/google.com/c.png'];
+    var placeCoords = [{lat:32.088240, lng:34.802857},{lat:32.085476, lng: 34.801226},{lat:32.087968 , lng:34.806741}];
+    var placeAddress = ['Street 5, Tel Aviv, Israel', 'Street 7, Jerusalem, Israel', 'Street 12, Haifa, Israel'];
+    var placeImgs = ['https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature'];
 
     var place = {
         id: utilService.getRandomString(11),
         name: 'Place' + ' ' + gId++,
         address: placeAddress[utilService.getRandomInt(0, placeAddress.length)],
-        coords: {lat:1,lng:1},
-        desc: loremIpsum.generate(utilService.getRandomInt(5, 10), utilService.getRandomInt(1, 8)),
+        coords: placeCoords[utilService.getRandomInt(0, placeCoords.length)],
+        desc:  utilService.getDesc(),
         tag: placeTags[utilService.getRandomInt(0, placeTags.length)],
         imgs: placeImgs
     }

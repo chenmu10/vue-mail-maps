@@ -5,72 +5,60 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            currPlace: null,
-            isTemp: false
-        }
-    },
-    created() {
-        this.currPlace = this.place;
-        if (!this.currPlace.id) {
-            this.isTemp=true;
-        } 
-
-    },
 
     computed: {
 
     },
     methods: {
-
         deletePlace() {
-            console.log('place to delete:', this.currPlace);
-            this.$emit('delete', this.currPlace);
+            console.log('place to delete:', this.place);
+            this.$emit('delete', this.place);
         },
         editPlace() {
-            console.log('place to edit', this.currPlace);
-            this.$emit('edit', this.currPlace);
+            console.log('place to edit', this.place);
+            this.$emit('edit', this.place);
         },
     },
     template: `
-    <section class="section">
-    <div class="place-details">
-        <h1 class="title is-2">place-details</h1>
-        <p><strong>is temp: </strong>{{ isTemp }}</p>
-        <p><strong>crrPlace: </strong>{{ currPlace }}</p>
-        <p><strong>props Place: </strong>{{ place }}</p>
-        <form @submit.prevent>
-            <div>  Name:
-                  <input type="text" :value="currPlace.name" >
-            </div>
-             <div>Address:
-                  <input type="text" :value="currPlace.address">
-            </div>
+    <section class="place-details box">
+            <p class="title is-2">{{ place.name }}  <span class="tag is-info">
+            {{ place.tag }}
+        </span></p> 
+            <p class="subtitle is-4">{{ place.address }}</p>
+            
+            <i class="fas fa-map-marker"></i>
+            {{  place.coords.lat }}, {{  place.coords.lng }}
+          
+          
+         
+            <p class="subtitle is-6"> 
+            {{place.desc }}
+             </p>
 
-            <div>
-             lat,lng:
-            <input type="text"  :value="currPlace.coords.lat">
-            </div>
-            <div>
-             description:
-             <textarea  rows="3"  :value="currPlace.desc"></textarea>
-             </div>
-             <div>
-             tag:
-            <input type="text"  :value="currPlace.tag">
-            </div>
-            <div>
-             photos:
-            <input type="text"  :value="currPlace.imgs[0]">
-            </div>
-            <button v-if="isTemp" @click.stop="editPlace">Add to my places</button>
-            <div v-else>
-            <button @click.stop="editPlace">Update</button>
-            <button @click.stop="deletePlace">Delete</button>
-            </div>
-        </form>
-    </div>
+             <span  v-for="img in place.imgs"  :key="place.imgs.id">
+            
+                 <img :src="img"/>
+                
+              </span>
+
+           
+
+          <p>
+                <button  class="button is-outlined" @click.stop="$emit('goToEdit',this.place)">Edit</button>
+                <button class="button is-danger is-outlined" @click.stop="deletePlace">Delete</button>
+           </p>
+
     </section>
     `
 }
+
+
+
+
+// <div>
+// Name: {{ place.name }}
+// </div>
+
+// <div>
+// Address: {{ place.address }}
+// </div>

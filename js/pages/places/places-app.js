@@ -3,18 +3,19 @@ import placesMap from "../../cmps/places/places-map.js";
 
 import placeList from '../../cmps/places/place-list.js'
 import placeDetails from '../../cmps/places/place-details.js'
+import placeEdit from '../../cmps/places/place-edit.js'
 
 import locService from "../../services/map/loc.service.js";
 import mapService from "../../services/map/map.service.js";
 
 export default {
     template: `
-    <section class="places-app container">
-        <h1>places App</h1>
+    <section class="places-app section">
+        <h1 class="title">places App</h1>
 
 
-    <div class="map-container">
-        <h1 class="title is-2">Map-container</h1>
+    <div class="map-container box">
+        <h1 class="title is-4">Map-container</h1>
         <input type="text" placeholder="search">
         
         <button>My location</button>
@@ -26,8 +27,10 @@ export default {
 
          <place-list :places="places"  @selected="selectPlace"></place-list>
 
-        <place-details v-if="selectedPlace"  :place="selectedPlace" @edit="editPlace" @delete="deletePlace"></place-details>
+        <place-details v-if="selectedPlace"  :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
         <p v-else>{{ selectedPlaceMsg }}</p>
+        <place-edit v-if="editMode"  :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
+
         
     </section>
     `,
@@ -37,6 +40,7 @@ export default {
             places: [],
             selectedPlace: null,
             filter: null,
+            editMode: false,
             selectedPlaceMsg: 'Choose a place to see details'
         }
     },
@@ -54,15 +58,20 @@ export default {
         selectPlace(idx) {
             this.selectedPlace = this.places[idx];
         },
+        closeEdit() {
+            this.editMode=false;
+        },
+
         editPlace(place) {
             console.log('place to edit from emit:', place);
-            placeService.editPlace(place)
-                .then(places => {
-                    this.places = places;
-                    this.selectedPlace = null;
-                    this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
+          this.editMode=true;
+            // placeService.editPlace(place)
+            //     .then(places => {
+            //         this.places = places;
+            //         this.selectedPlace = null;
+            //         this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
         
-                })
+            //     })
 
         },
         deletePlace(place) {
@@ -85,6 +94,7 @@ export default {
         placeService,
         placeList,
         placeDetails,
+        placeEdit,
         placesMap
     }
 
