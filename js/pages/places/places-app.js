@@ -1,4 +1,4 @@
-import placesService from "../../services/places/place.service.js";
+import placeService from "../../services/places/place.service.js";
 
 import placeList from '../../cmps/places/place-list.js'
 import placeDetails from '../../cmps/places/place-details.js'
@@ -35,11 +35,16 @@ export default {
     </section>
     `,
     created() {
-        
+        placeService.query()
+            .then(places => {
 
-           
+                console.log('places-app:got places query :', places);
+                this.places = places;
+                this.selectedPlace = places[0];
 
-    },
+            })
+
+    }    ,
      methods: {
         selectPlace(idx) {
             this.selectedPlace = this.places[idx];
@@ -51,7 +56,7 @@ export default {
         
     },
     components: {
-        placesService,
+        placeService,
         placeList,
         placeDetails
     }
