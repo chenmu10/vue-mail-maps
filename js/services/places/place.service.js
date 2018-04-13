@@ -66,7 +66,8 @@ function deletePlace(placeId) {
             places.splice(placeIdx, 1);
             console.log('delete place:', places);
 
-            // return storageService.store(KEY, places);
+            storageService.store(KEY, places);
+            return places;
         })
 }
 
