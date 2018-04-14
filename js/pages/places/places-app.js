@@ -28,7 +28,19 @@ export default {
          <place-list :places="places"  @selected="selectPlace"></place-list>
 
         <place-details v-if="selectedPlace"  :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
-        <p v-else>{{ selectedPlaceMsg }}</p>
+        <article v-else class="message is-info">
+        
+        <div class="message-body">
+        {{ selectedPlaceMsg }}
+        </div>
+      
+        </article>
+      
+        
+      
+                
+ 
+     
         <place-edit v-if="editMode"  :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
 
         
@@ -80,7 +92,7 @@ export default {
                 .then(places => {
                     this.places = places;
                     this.selectedPlace = null;
-                    this.selectedPlaceMsg = 'Deleted, Choose a place to see details.';
+                    this.selectedPlaceMsg = 'Deleted. Choose a place to see details.';
         
                 })
 

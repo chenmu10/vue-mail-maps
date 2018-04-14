@@ -21,34 +21,38 @@ export default {
     },
     template: `
     <section class="place-details box">
-            <p class="title is-2">{{ place.name }}  <span class="tag is-info">
-            {{ place.tag }}
-        </span></p> 
-            <p class="subtitle is-4">{{ place.address }}</p>
-            
-            <i class="fas fa-map-marker"></i>
-            {{  place.coords.lat }}, {{  place.coords.lng }}
-          
-          
-         
-            <p class="subtitle is-6"> 
-            {{place.desc }}
-             </p>
+	<p class="title is-2">{{ place.name }}  <span class="tag is-info">
+		{{ place.tag }}
+	</span></p> 
+	<p class="subtitle is-4">{{ place.address }}</p>
+	
+	<i class="fas fa-map-marker"></i>
+	{{  place.coords.lat }}, {{  place.coords.lng }}
+	
+	
+	<div class="block">
+		<p class="subtitle is-6"> 
+			{{place.desc }}
+		</p>
+	</div>
+	<span  v-for="img in place.imgs"  :key="place.imgs.id">
+		<img :src="img"/>
+	</span>
+	
+	<div class="block">
+		
+		<div class="buttons is-centered">
+			<button  class="button is-outlined" @click.stop="$emit('goToEdit',this.place)">Edit</button>
+			<button class="button is-danger is-outlined" @click.stop="deletePlace">Delete</button>
+			
+		</div>
+		
+	</div>
+	
+</div>
 
-             <span  v-for="img in place.imgs"  :key="place.imgs.id">
-            
-                 <img :src="img"/>
-                
-              </span>
 
-           
-
-          <p>
-                <button  class="button is-outlined" @click.stop="$emit('goToEdit',this.place)">Edit</button>
-                <button class="button is-danger is-outlined" @click.stop="deletePlace">Delete</button>
-           </p>
-
-    </section>
+</section>
     `
 }
 

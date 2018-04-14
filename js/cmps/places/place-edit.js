@@ -49,7 +49,7 @@ export default {
           <input  type="text" v-model="place.name">
         </div>
       </div>
-      
+     
       <div class="field">
         <label class="label">Description</label>
         <div class="control">
