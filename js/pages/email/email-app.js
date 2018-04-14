@@ -30,7 +30,7 @@ export default {
                 <!-- </div> -->
             </section>
             <email-compose @saveEmail="saveEmail"></email-compose>
-            <email-status></email-status>
+            <email-status :emails="emails"></email-status>
         <router-view></router-view>
     </section>
     `,
