@@ -47,7 +47,7 @@ export default {
         }
     },
     methods: {
-        emitSelected(idx) {
+             emitSelected(idx) {
             this.$emit('selected',idx);
         },
         sortEmails(sortBy) {
@@ -67,6 +67,7 @@ export default {
               });
          
         },
+        
     },
     components: {
         emailPreview,
