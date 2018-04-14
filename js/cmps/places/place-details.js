@@ -20,22 +20,28 @@ export default {
         },
     },
     template: `
-    <section class="place-details box">
+    <section class="place-details">
 	<p class="title is-2">{{ place.name }}  <span class="tag is-info">
 		{{ place.tag }}
 	</span></p> 
-	<p class="subtitle is-4">{{ place.address }}</p>
+    <p class="subtitle is-4">{{ place.address }}</p>
+    
+    <span class="is-size-7 has-text-grey">
+    <i class="fas fa-map-marker"></i>
+	{{ place.coords.lat }}, {{ place.coords.lng }}
+    </span>
 	
-	<i class="fas fa-map-marker"></i>
-	{{  place.coords.lat }}, {{  place.coords.lng }}
 	
 	
 	<div class="block">
-		<p class="subtitle is-6"> 
+		<p class="subtitle is-5"> 
 			{{place.desc }}
 		</p>
-	</div>
-	<span  v-for="img in place.imgs"  :key="place.imgs.id">
+    </div>
+    
+
+    
+	<span v-for="img in place.imgs"  :key="place.imgs.id">
 		<img :src="img"/>
 	</span>
 	

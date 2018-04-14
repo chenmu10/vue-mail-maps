@@ -30,9 +30,12 @@ function query(filter = null) {
             if (filter === null) {
                 return placesDB;
             } else {
-                return placesDB.filter(place => place.name.includes(filter.byText) ||
-                                                place.address.includes(filter.byText) ||
-                                                place.desc.includes(filter.byText));
+               console.log(filter);
+               console.log(places[0].name.toLowerCase());
+               
+                return placesDB.filter(place => place.name.toLowerCase().includes(filter) ||
+                                                place.address.toLowerCase().includes(filter) ||
+                                                place.desc.toLowerCase().includes(filter));
             }
         })
 }
@@ -95,14 +98,14 @@ function editPlace(place) {
 
 function generatePlaces() {
     var places = [];
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 3; index++) {
         var place = createPlace();
         places.push(place);
     }
     return places;
 }
 
-var gId = 1;
+var gId = 0;
 
 function createPlace() {
     var loremIpsum = new LoremIpsum();
@@ -110,14 +113,15 @@ function createPlace() {
     var placeTags = ['food', 'attraction', 'sights', 'shopping'];
     var placeCoords = [{lat:32.088240, lng:34.802857},{lat:32.085476, lng: 34.801226},{lat:32.087968 , lng:34.806741}];
     var placeAddress = ['Street 5, Tel Aviv, Israel', 'Street 7, Jerusalem, Israel', 'Street 12, Haifa, Israel'];
+    var placeDescs = ['A good pizza place. ', 'A famous site with great view', 'Gift shop. Closed on monday.'];
     var placeImgs = ['https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature'];
 
     var place = {
         id: utilService.getRandomString(11),
-        name: 'Place' + ' ' + gId++,
-        address: placeAddress[utilService.getRandomInt(0, placeAddress.length)],
-        coords: placeCoords[utilService.getRandomInt(0, placeCoords.length)],
-        desc:  utilService.getDesc(),
+        name: 'Place' + ' ' + ++gId,
+        address: placeAddress[gId-1],
+        coords: placeCoords[gId-1],
+        desc:  placeDescs[gId-1],
         tag: placeTags[utilService.getRandomInt(0, placeTags.length)],
         imgs: placeImgs
     }

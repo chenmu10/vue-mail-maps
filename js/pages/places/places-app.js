@@ -10,48 +10,46 @@ import mapService from "../../services/map/map.service.js";
 
 export default {
     template: `
-    <section class="places-app section">
-        <h1 class="title">places App</h1>
+    <section class="places-app">
+    <h1 class="title">places App</h1>
 
+    <div>
 
-    <div class="map-container box">
-        <h1 class="title is-4">Map-container</h1>
-        <input type="text" placeholder="search">
-        
-        <button>My location</button>
-        <!-- <div class="map">
-            MAP GOES HERE! -->
-            <places-map></places-map>
+        <div class="map-container">
+            <h1 class="title is-4">Map-container</h1>
+            <input type="text" placeholder="search">
+
+            <button>My location</button>
+             <div class="map"><places-map></places-map>
+             </div>
         </div>
-          </div>
+        <div >
+        <place-list :places="places" @selected="selectPlace" @filtered="setFilter"></place-list>
+        </div>
 
-         <place-list :places="places"  @selected="selectPlace"></place-list>
-
-        <place-details v-if="selectedPlace"  :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
-        <article v-else class="message is-info">
+        <div>
+        <place-details v-if="selectedPlace" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
+        </div>
         
+    </div>
+
+    <article v-else class="message is-info">
         <div class="message-body">
-        {{ selectedPlaceMsg }}
+            {{ selectedPlaceMsg }}
         </div>
-      
-        </article>
-      
-        
-      
-                
- 
-     
-        <place-edit v-if="editMode"  :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
+    </article>
 
-        
-    </section>
+    <place-edit v-if="editMode" :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
+
+
+</section>
     `,
     data() {
         return {
             gLoc: null,
             places: [],
             selectedPlace: null,
-            filter: null,
+            
             editMode: false,
             selectedPlaceMsg: 'Choose a place to see details'
         }
@@ -71,18 +69,18 @@ export default {
             this.selectedPlace = this.places[idx];
         },
         closeEdit() {
-            this.editMode=false;
+            this.editMode = false;
         },
 
         editPlace(place) {
             console.log('place to edit from emit:', place);
-          this.editMode=true;
+            this.editMode = true;
             // placeService.editPlace(place)
             //     .then(places => {
             //         this.places = places;
             //         this.selectedPlace = null;
             //         this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
-        
+
             //     })
 
         },
@@ -93,14 +91,24 @@ export default {
                     this.places = places;
                     this.selectedPlace = null;
                     this.selectedPlaceMsg = 'Deleted. Choose a place to see details.';
-        
+
                 })
 
+        },
+        setFilter(filter) {
+            console.log('filterrr');
+            placeService.query(filter)
+                .then(places => {
+
+                    console.log('places-app:got places query FILTER :', places);
+                    this.places = places;
+
+                })
         }
 
     },
     computed: {
-        
+
     },
     components: {
         placeService,

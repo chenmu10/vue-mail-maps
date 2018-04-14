@@ -77,11 +77,9 @@ export default {
     <button  class="button is-outlined">Add Url</button>
     </div>
   </div>
-            
-         
 
 
-           <button class="button is-outlined" v-if="isTemp" @click.stop="editPlace">Add to my places</button>
+           <button class="button is-outlined is-success" v-if="isTemp" @click.stop="editPlace">Add to my places</button>
            <button class="button is-outlined" v-else @click.stop="$emit('close')">Finish Editing</button>
            
         </form>
