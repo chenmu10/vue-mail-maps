@@ -20,7 +20,7 @@ export default {
     
     <place-details v-if="selectedPlace&&!editMode" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
 
-        <div v-else class="message is-info">
+        <div v-else-if="!editMode" class="message is-info">
             <div class="message-body">
                 {{ selectedPlaceMsg }}
             </div>

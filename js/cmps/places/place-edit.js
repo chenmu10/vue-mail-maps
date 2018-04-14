@@ -68,14 +68,22 @@ export default {
                     {{ img }}
                 </li>
             </ul>
+           
             <div class="control">
+           
                 <input class="input" type="text">
+             
                 <button class="button is-outlined is-info">Add Url</button>
+          
             </div>
         </div>
 
+        <div class="block">
         <button class="button is-outlined is-success" v-if="isTemp" @click.stop="editPlace">Add to my places</button>
         <button class="button is-outlined is-info" v-else @click.stop="$emit('close')">Finish Editing</button>
+
+        </div>
+    
 
     </form>
 

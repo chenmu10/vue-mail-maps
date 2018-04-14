@@ -9,10 +9,13 @@ export default {
     },
     template: `
     <section class="box">
-    
-    <input id="map-search-input" class="input" type="text" placeholder="Find address.." @input="autocomplete">
-
+    <div class="block">
+        <input id="map-search-input" class="input" type="text" placeholder="Find address.." @input="autocomplete">
+    </div>
+   
+    <div class="block">
     <button class="button is-info is-outlined">My location</button>
+    </div>
         <div id="map" style="height: 400px; width: 400px;"></div>
     </section>
     `,

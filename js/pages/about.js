@@ -4,11 +4,7 @@ import toggleBtn from '../cmps/toggle-btn.js'
 export default {
     template:`
     <section class="about">
-        <h1>About {{greet}}</h1>
-        Happy? {{isHappy}}
-        <br/><br/><br/> 
-        <toggle-btn v-model="isHappy"></toggle-btn>
-        <button class="button" @click="goHome">Go Home</button>
+       
     </section>
     `,
     data() {
