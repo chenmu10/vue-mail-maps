@@ -15,13 +15,12 @@ export default {
         },
     },
     template: `
-        <section class="email-details section">
-        <h1 class="title is-1">Email Details</h1>
-                <h1>{{email.subject}}</h1>
+        <section class="email-details section box">
+        <h1 class="title is-1">{{email.subject}}</h1>
+           
                  <p>{{email.body}}</p>
-                <p>read: {{email.isRead}}</p>
-                <p>sent at: {{email.sentAt}}</p>
-                <button @click="deleteEmail();" >delete</button>
+               
+                <button class="button is-danger is-outlined" @click="deleteEmail();" >delete</button>
         </section>
         
             `
@@ -29,3 +28,5 @@ export default {
       
 }
 
+// <p>read: {{email.isRead}}</p>
+// <p>sent at: {{email.sentAt}}</p>

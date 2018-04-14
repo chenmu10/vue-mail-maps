@@ -11,8 +11,8 @@ export default {
     props: {emails:{type: Array, required: true}},
     template:`
     <section class="email-list section">
-        <h1>Email status</h1>
-        <p>You have:{{unreadCount}} unread emails out of {{emails.length}}</p>
+      
+        <p>{{unreadCount}} unread emails out of {{emails.length}}</p>
         <progress class="progress is-info" :value="unreadCount" :max="emails.length"></progress>
     </section>
     `

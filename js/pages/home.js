@@ -14,7 +14,7 @@ export default {
     </div>
   </section>
 
-  <section class="hero is-medium is-light is-bold">
+  <section class="hero is-large is-light is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">

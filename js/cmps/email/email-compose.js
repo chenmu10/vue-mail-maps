@@ -8,8 +8,8 @@ export default {
         }
     },
     template: `
-     <section class="email-compose section">
-        <h1 class="title is-1">Email compose</h1>
+     <section class="email-compose section box">
+        <h1 class="title is-1">Compose Email</h1>
    <form @submit.prevent="saveEmail">
                         
             <div class="field is-horizontal">
@@ -21,9 +21,7 @@ export default {
                 <div class="control">
                     <input class="input" type="text" v-model="email.subject" required >
                 </div>
-                <p class="help">
-                    This field is required
-                </p>
+               
                 </div>
             </div>
             </div>
@@ -48,7 +46,7 @@ export default {
             <div class="field-body">
                 <div class="field">
                 <div class="control">
-                    <button type="submit" class="button is-primary">
+                    <button type="submit" class="button is-info" >
                     Send email
                     </button>
                 </div>

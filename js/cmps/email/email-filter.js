@@ -11,7 +11,7 @@ export default {
         }
     },
     template: `
-        <section class="section email-filter">
+        <section class="email-filter">
           
           
 

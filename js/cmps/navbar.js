@@ -6,15 +6,14 @@ export default {
                
       <nav class="navbar is-light">
       <div class="navbar-brand">
-        <a class="navbar-item">
+        <router-link to="/" class="navbar-item">
       
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png">
-        <h4 class="title is-4 has-text-primary"> <router-link to="/">AppSus</router-link></h4>
+        <h4 class="title is-4 has-text-primary"> AppSus</h4>
        
-        </a>
+        </router-link>
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-          <span>Home</span>
-          <span>About</span>
+          <span></span>
           <span></span>
         </div>
       </div>
@@ -34,30 +33,30 @@ export default {
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <button class="is-danger button is-medium">
+                <router-link to="/email" class="is-danger button is-medium">
                   <span class="icon">
                     <i class="far fa-envelope"></i>
                   </span>
                   <span>
-                  <router-link to="/email">MyEmail</router-link>
+                 MyEmail
                   </span>
-                </button>
+                </router-link>
               </p>
               <p class="control">
-                <button class="button is-info is-medium">
+                <router-link to="/places" class="button is-info is-medium">
                   <span class="icon">
                     <i class="far fa-map"></i>
                   </span>
-                  <span><router-link to="/places">MyPlaces</router-link></span>
-                </button>
+                  <span>MyPlaces</span>
+                </router-link>
               </p>
               <p class="control">
-              <button class="button is-warning is-medium">
+              <router-link to="/notes" class="button is-success is-medium">
                 <span class="icon">
                 <i class="fas fa-pencil-alt"></i>
                 </span>
-                <span><router-link to="/notes">MyNotes</router-link></span>
-              </button>
+                <span>MyNotes</span>
+              </router-link>
             </p>
             </div>
           </div>

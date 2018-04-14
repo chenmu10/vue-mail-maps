@@ -13,23 +13,24 @@ export default {
         return {
             emails: [],
             selectedEmail: null,
+            isCompose: false
         }
     },
 
     template: `
     <section class="email-app section">
-        <h1>Email App</h1>
-            <email-filter @filtered="setFilter"></email-filter>
-            <button class="button is-link is-medium compost-btn">Compose</button>
+     
+         
+            
             
             <section class="email-body">
-                <email-list :emails="emails"  @selected="selectEmail" ></email-list>
+                <email-list :emails="emails"  @selected="selectEmail" @goToCompose="isCompose=true" ></email-list>
                 <!-- <div class="emailapp-details"> -->
-                <email-details v-if="selectedEmail" @deleteEmail="deleteEmail" :email="selectedEmail" ></email-details>
-
+                <email-details v-if="selectedEmail&&!isCompose" @deleteEmail="deleteEmail" :email="selectedEmail" ></email-details>
+                <email-compose v-else @saveEmail="saveEmail"></email-compose>
                 <!-- </div> -->
             </section>
-            <email-compose @saveEmail="saveEmail"></email-compose>
+           
             <email-status :emails="emails"></email-status>
         <router-view></router-view>
     </section>
@@ -45,8 +46,7 @@ export default {
 
             })
 
-    }
-    ,
+    },
     methods: {
         selectEmail(idx) {
             this.selectedEmail = this.emails[idx];
@@ -64,9 +64,10 @@ export default {
         },
         saveEmail(email) {
             emailService.addEmail(email)
-            .then(emails => {
-               this.emails = emails
-            })
+                .then(emails => {
+                    this.emails = emails;
+                    this.isCompose = false;
+                })
 
         },
         deleteEmail(id) {
@@ -75,7 +76,7 @@ export default {
                     console.log(`email was deleted`);
                 })
         },
-        
+
     },
     components: {
         emailList,

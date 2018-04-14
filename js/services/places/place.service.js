@@ -1,7 +1,9 @@
 import utilService from '../util.service.js';
 import storageService from '../storage.service.js';
 import LoremIpsum from '../loremIpsum.js'
-import eventBus, {USR_MSG_DISPLAY} from '../event-bus.service.js';
+import eventBus, {
+    USR_MSG_DISPLAY
+} from '../event-bus.service.js';
 
 const KEY = 'placesAppKey';
 var placesDB = [];
@@ -30,12 +32,12 @@ function query(filter = null) {
             if (filter === null) {
                 return placesDB;
             } else {
-               console.log(filter);
-               console.log(places[0].name.toLowerCase());
-               
+                console.log(filter);
+                console.log(places[0].name.toLowerCase());
+
                 return placesDB.filter(place => place.name.toLowerCase().includes(filter) ||
-                                                place.address.toLowerCase().includes(filter) ||
-                                                place.desc.toLowerCase().includes(filter));
+                    place.address.toLowerCase().includes(filter) ||
+                    place.desc.toLowerCase().includes(filter));
             }
         })
 }
@@ -98,10 +100,39 @@ function editPlace(place) {
 
 function generatePlaces() {
     var places = [];
-    for (let index = 0; index < 3; index++) {
-        var place = createPlace();
-        places.push(place);
-    }
+
+    places = [{
+        id: 1,
+        name: 'Coding Academy',
+        address: 'Habonim 4, Ramat Gan',
+        coords: {lat:32.088142, lng:34.802829},
+        desc: 'Full stack 3 months course.',
+        tag: 'Training',
+        imgs: ['https://picsum.photos/150/150/?random', 'https://loremflickr.com/150/150', 'https://picsum.photos/150/150/?random']
+    }, {
+        id: 2,
+        name: 'Avi\'s place',
+        address: 'Toval 38, Ramat Gan',
+        coords: {lat:32.085623, lng:34.802829},
+        desc: 'best pizza in town.',
+        tag: 'Food',
+        imgs: ['https://picsum.photos/150/150/?random', 'https://picsum.photos/150/150/?random', 'https://loremflickr.com/150/150']
+    }, {
+        id: 3,
+        name: 'Cofix',
+        address: 'Hahilazon 1, Ramat  Gan',
+        coords: {lat:32.087256, lng:34.803901} ,
+        desc: 'This is a place.',
+        tag: 'Food',
+        imgs: ['https://picsum.photos/150/150/?random', 'https://loremflickr.com/150/150', 'https://picsum.photos/150/150/?random']
+    }]
+
+
+    // for (let index = 0; index < 3; index++) {
+    //     var place = createPlace();
+    //     places.push(place);
+    // }
+
     return places;
 }
 
@@ -111,17 +142,26 @@ function createPlace() {
     var loremIpsum = new LoremIpsum();
 
     var placeTags = ['food', 'attraction', 'sights', 'shopping'];
-    var placeCoords = [{lat:32.088240, lng:34.802857},{lat:32.085476, lng: 34.801226},{lat:32.087968 , lng:34.806741}];
+    var placeCoords = [{
+        lat: 32.088240,
+        lng: 34.802857
+    }, {
+        lat: 32.085476,
+        lng: 34.801226
+    }, {
+        lat: 32.087968,
+        lng: 34.806741
+    }];
     var placeAddress = ['Street 5, Tel Aviv, Israel', 'Street 7, Jerusalem, Israel', 'Street 12, Haifa, Israel'];
     var placeDescs = ['A good pizza place. ', 'A famous site with great view', 'Gift shop. Closed on monday.'];
-    var placeImgs = ['https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature', 'https://placeimg.com/150/150/nature'];
+    var placeImgs = ['https://picsum.photos/150/150/?random', 'https://picsum.photos/150/150/?random', 'https://picsum.photos/150/150/?random'];
 
     var place = {
         id: utilService.getRandomString(11),
         name: 'Place' + ' ' + ++gId,
-        address: placeAddress[gId-1],
-        coords: placeCoords[gId-1],
-        desc:  placeDescs[gId-1],
+        address: placeAddress[gId - 1],
+        coords: placeCoords[gId - 1],
+        desc: placeDescs[gId - 1],
         tag: placeTags[utilService.getRandomInt(0, placeTags.length)],
         imgs: placeImgs
     }
