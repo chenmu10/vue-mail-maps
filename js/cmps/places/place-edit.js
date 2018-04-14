@@ -27,63 +27,63 @@ export default {
         },
     },
     template: `
-    <section class="place-details box">
+    <section class="place-edit box">
+
+    <p class="title is-2">Editor</p>
+    <p class="subtitle is-4">{{ place.address }}</p>
+    <span class="is-size-7 has-text-grey">
+    <i class="fas fa-map-marker"></i>
+	{{ place.coords.lat }}, {{ place.coords.lng }}
+    </span>
+    <p><strong>is temp: </strong>{{ isTemp }}</p>
    
-        <h1 class="title is-2">place-edit</h1>
-        <p><strong>is temp: </strong>{{ isTemp }}</p>
-      
-        <form @submit.prevent>
 
-        <div>
-        {{ place.address }}
-      </div>
+   
 
-        <div>
-        <i class="fas fa-map-marker"></i>
-        {{  place.coords.lat }}, {{  place.coords.lng }}
+
+
+    <form @submit.prevent>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" v-model="place.name">
+            </div>
         </div>
 
         <div class="field">
-        <label class="label">Name</label>
-        <div class="control">
-          <input  type="text" v-model="place.name">
+            <label class="label">Description</label>
+            <div class="control">
+                <textarea class="textarea" type="text" rows="5" cols="50" v-model="place.desc"></textarea>
+            </div>
         </div>
-      </div>
-     
-      <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-        <textarea  type="text" rows="5" cols="50" v-model="place.desc"></textarea>
+
+
+        <div class="field">
+            <label class="label">Tag</label>
+            <div class="control">
+                <input class="input" type="text" v-model="place.tag">
+            </div>
         </div>
-      </div>
 
-     
-      <div class="field">
-      <label class="label">Tag</label>
-      <div class="control">
-        <input type="text" v-model="place.tag">
-      </div>
-    </div>
+        <div class="field">
+            <label class="label">photos</label>
+            <ul>
+                <li v-for="img in place.imgs">
+                    {{ img }}
+                </li>
+            </ul>
+            <div class="control">
+                <input class="input" type="text">
+                <button class="button is-outlined is-info">Add Url</button>
+            </div>
+        </div>
 
-    <div class="field">
-    <label class="label">photos</label>
-    <ul>
-    <li v-for="img in place.imgs">
-        {{ img }}
-    </li>
-</ul>
-    <div class="control">
-    <input type="text"> 
-    <button  class="button is-outlined">Add Url</button>
-    </div>
-  </div>
+        <button class="button is-outlined is-success" v-if="isTemp" @click.stop="editPlace">Add to my places</button>
+        <button class="button is-outlined is-info" v-else @click.stop="$emit('close')">Finish Editing</button>
 
+    </form>
 
-           <button class="button is-outlined is-success" v-if="isTemp" @click.stop="editPlace">Add to my places</button>
-           <button class="button is-outlined" v-else @click.stop="$emit('close')">Finish Editing</button>
-           
-        </form>
+</section>
 
-    </section>
     `
 }

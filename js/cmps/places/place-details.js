@@ -20,7 +20,7 @@ export default {
         },
     },
     template: `
-    <section class="place-details">
+    <section class="place-details box">
 	<p class="title is-2">{{ place.name }}  <span class="tag is-info">
 		{{ place.tag }}
 	</span></p> 

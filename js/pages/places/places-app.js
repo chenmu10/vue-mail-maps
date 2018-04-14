@@ -10,36 +10,22 @@ import mapService from "../../services/map/map.service.js";
 
 export default {
     template: `
-    <section class="places-app">
-    <h1 class="title">places App</h1>
+    <section class="places-app flex section">
+      
+    <place-list :places="places" @selected="selectPlace" @filtered="setFilter"></place-list>
+    
+    <places-map  :places="places"></places-map>
+    
+    <place-details v-if="selectedPlace" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
 
-    <div>
-
-        <div class="map-container">
-            <h1 class="title is-4">Map-container</h1>
-            <input type="text" placeholder="search">
-
-            <button>My location</button>
-             <div class="map"><places-map></places-map>
-             </div>
+        <div v-else class="message is-info">
+            <div class="message-body">
+                {{ selectedPlaceMsg }}
+            </div>
         </div>
-        <div >
-        <place-list :places="places" @selected="selectPlace" @filtered="setFilter"></place-list>
-        </div>
+   
 
-        <div>
-        <place-details v-if="selectedPlace" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
-        </div>
-        
-    </div>
-
-    <article v-else class="message is-info">
-        <div class="message-body">
-            {{ selectedPlaceMsg }}
-        </div>
-    </article>
-
-    <place-edit v-if="editMode" :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
+        <place-edit v-if="editMode" :place="selectedPlace" @edit="editPlace" @close="closeEdit"></place-edit>
 
 
 </section>
@@ -67,6 +53,7 @@ export default {
     methods: {
         selectPlace(idx) {
             this.selectedPlace = this.places[idx];
+            mapService.setCenter(this.selectedPlace)
         },
         closeEdit() {
             this.editMode = false;

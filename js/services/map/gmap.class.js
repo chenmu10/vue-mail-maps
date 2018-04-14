@@ -28,7 +28,7 @@ export class GoogleMapsApi {
         this.resolve = resolve;
         if (typeof window.google === 'undefined') {
           const script = document.createElement('script');
-          script.src = `//maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=${this.callbackName}`;
+          script.src = `//maps.googleapis.com/maps/api/js?key=${this.apiKey}&libraries=places&callback=${this.callbackName}`;
           script.async = true;
           document.body.append(script);
         } else {

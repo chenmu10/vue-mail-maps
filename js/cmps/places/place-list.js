@@ -18,14 +18,14 @@ export default {
         
     },
     template: `
-            <section class="">
+            <section class="box">
 
           
             <aside class="menu">
             <p class="title">
               My Places
             </p>
-            <input type="text" placeholder="search" v-model="filter" @input="$emit('filtered', filter)">
+            <input class="input" type="text" placeholder="search my places.." v-model="filter" @input="$emit('filtered', filter)">
             <ul class="menu-list">
               <li  v-for="(place, idx) in places" :key="place.id">
               <a @click="emitSelected(idx)"><span class="bold">{{place.name}}</span> {{place.address}} </a>
