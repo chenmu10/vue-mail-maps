@@ -1,12 +1,20 @@
 import emailService from "../../services/email/email.service.js";
 
 export default {
-    // props: {emails:{type: object, required: true}},
+    computed: {
+        unreadCount() {
+            let unreadEmails = this.emails.filter(email => !email.isRead)
+            return unreadEmails.length;
+    }
+        
+      },
+    props: {emails:{type: Array, required: true}},
     template:`
     <section class="email-list section">
         <h1>Email status</h1>
-        <!-- {{email.subject}} -->
-        <progress class="progress is-info" value="45" max="100">45%</progress>
+        <p>You have:{{unreadCount}} unread emails out of {{emails.length}}</p>
+        <progress class="progress is-info" :value="unreadCount" :max="emails.length"></progress>
     </section>
     `
+    
 }

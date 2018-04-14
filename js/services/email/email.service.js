@@ -79,6 +79,8 @@ function getById(emailId) {
 }
 
 function deleteEmail(emailId) {
+    console.log(emailId,'email id');
+    
     return storageService.load(KEY)
         .then(emails => {
             console.log('test');
@@ -86,9 +88,9 @@ function deleteEmail(emailId) {
             emails = dummyDB;
             var emailIdx = emails.findIndex(email => email.id === emailId);
             emails.splice(emailIdx, 1);
-            console.log('delete email:', emails);
+            console.log('delete email:', emailIdx);
 
-            // return storageService.store(KEY, emails);
+            return storageService.store(KEY, emails);
         })
 }
 

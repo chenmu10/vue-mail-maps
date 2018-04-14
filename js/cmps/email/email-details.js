@@ -10,7 +10,9 @@ export default {
         
     },
     methods: {
-       
+        deleteEmail() {
+            this.$emit('deleteEmail' , this.email.id);
+        },
     },
     template: `
         <section class="email-details section">
@@ -19,7 +21,9 @@ export default {
                  <p>{{email.body}}</p>
                 <p>read: {{email.isRead}}</p>
                 <p>sent at: {{email.sentAt}}</p>
+                <button @click="deleteEmail();" >delete</button>
         </section>
+        
             `
   
       

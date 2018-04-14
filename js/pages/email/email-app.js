@@ -25,12 +25,12 @@ export default {
             <section class="email-body">
                 <email-list :emails="emails"  @selected="selectEmail" ></email-list>
                 <!-- <div class="emailapp-details"> -->
-                <email-details v-if="selectedEmail" :email="selectedEmail" ></email-details>
+                <email-details v-if="selectedEmail" @deleteEmail="deleteEmail" :email="selectedEmail" ></email-details>
 
                 <!-- </div> -->
             </section>
             <email-compose @saveEmail="saveEmail"></email-compose>
-            <email-status></email-status>
+            <email-status :emails="emails"></email-status>
         <router-view></router-view>
     </section>
     `,
@@ -68,7 +68,13 @@ export default {
                this.emails = emails
             })
 
-        }
+        },
+        deleteEmail(id) {
+            emailService.deleteEmail(id)
+                .then(res => {
+                    console.log(`email was deleted`);
+                })
+        },
         
     },
     components: {
