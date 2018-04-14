@@ -8,6 +8,8 @@ import placeEdit from '../../cmps/places/place-edit.js'
 import locService from "../../services/map/loc.service.js";
 import mapService from "../../services/map/map.service.js";
 
+import eventbus, { GOOGLE_AUTOCOMPLETE } from './../../services/event-bus.service.js';
+
 export default {
     template: `
     <section class="places-app flex section">
@@ -16,7 +18,7 @@ export default {
     
     <places-map  :places="places"></places-map>
     
-    <place-details v-if="selectedPlace" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
+    <place-details v-if="selectedPlace&&!editMode" :place="selectedPlace" @goToEdit="editPlace" @delete="deletePlace"></place-details>
 
         <div v-else class="message is-info">
             <div class="message-body">
@@ -35,12 +37,16 @@ export default {
             gLoc: null,
             places: [],
             selectedPlace: null,
-            
+          
             editMode: false,
             selectedPlaceMsg: 'Choose a place to see details'
         }
     },
     created() {
+        eventbus.$on(GOOGLE_AUTOCOMPLETE, newPlace => {
+            this.selectedPlace = newPlace;
+            this.editMode = true;
+        })
         placeService.query()
             .then(places => {
 
@@ -48,62 +54,64 @@ export default {
                 this.places = places;
 
             })
+        
 
-    },
-    methods: {
-        selectPlace(idx) {
-            this.selectedPlace = this.places[idx];
-            mapService.setCenter(this.selectedPlace)
-        },
-        closeEdit() {
-            this.editMode = false;
-        },
+            },
+            methods: {
+                selectPlace(idx) {
+                    this.selectedPlace = this.places[idx];
+                    mapService.setCenter(this.selectedPlace)
+                },
+                closeEdit() {
+                    this.editMode = false;
+                },
 
-        editPlace(place) {
-            console.log('place to edit from emit:', place);
-            this.editMode = true;
-            // placeService.editPlace(place)
-            //     .then(places => {
-            //         this.places = places;
-            //         this.selectedPlace = null;
-            //         this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
+                editPlace(place) {
+                    console.log('place to edit from emit:', place);
+                    this.editMode = true;
+                    // placeService.editPlace(place)
+                    //     .then(places => {
+                    //         this.places = places;
+                    //         this.selectedPlace = null;
+                    //         this.selectedPlaceMsg = 'Updated, Choose a place to see details.';
 
-            //     })
+                    //     })
 
-        },
-        deletePlace(place) {
-            console.log('place to delete from emit:', place.id);
-            placeService.deletePlace(place.id)
-                .then(places => {
-                    this.places = places;
-                    this.selectedPlace = null;
-                    this.selectedPlaceMsg = 'Deleted. Choose a place to see details.';
+                },
+                deletePlace(place) {
+                    console.log('place to delete from emit:', place.id);
+                    placeService.deletePlace(place.id)
+                        .then(places => {
+                            this.places = places;
+                            this.selectedPlace = null;
+                            this.selectedPlaceMsg = 'Deleted. Choose a place to see details.';
 
-                })
+                        })
 
-        },
-        setFilter(filter) {
-            console.log('filterrr');
-            placeService.query(filter)
-                .then(places => {
+                },
+                setFilter(filter) {
+                    console.log('filterrr');
+                    placeService.query(filter)
+                        .then(places => {
 
-                    console.log('places-app:got places query FILTER :', places);
-                    this.places = places;
+                            console.log('places-app:got places query FILTER :', places);
+                            this.places = places;
 
-                })
-        }
+                        })
+                }
 
-    },
-    computed: {
+            },
+            computed: {
 
-    },
-    components: {
-        placeService,
-        placeList,
-        placeDetails,
-        placeEdit,
-        placesMap
+            },
+            components: {
+                placeService,
+                placeList,
+                placeDetails,
+                placeEdit,
+                placesMap,
+                eventbus
+            }
+
+
     }
-
-
-}

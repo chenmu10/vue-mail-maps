@@ -2,6 +2,8 @@ import {
     GoogleMapsApi
 } from './gmap.class.js';
 
+import eventbus, { GOOGLE_AUTOCOMPLETE } from './../event-bus.service.js';
+
 let map;
 var markers = [];
 
@@ -71,6 +73,24 @@ function attachMessage(place, marker) {
     });
 }
 
+function autocomplete() {
+    var input = document.querySelector('#map-search-input');
+    var newPlace;
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+        console.log('autocomplete', autocomplete.getPlace().formatted_address)
+        newPlace.coords.lat = autocomplete.getPlace().geometry.location.lat()
+        newPlace.coords.lng = autocomplete.getPlace().geometry.location.lng()
+        newPlace.address = autocomplete.getPlace().formatted_address;
+
+    })
+    
+    eventbus.$emit('GOOGLE_AUTOCOMPLETE', newPlace);
+}
+
+
+
+
 
 function setCenter(place) {
 
@@ -99,5 +119,6 @@ export default {
     initMap,
     addMarker,
     setCenter,
-    setMarkers
+    setMarkers,
+    autocomplete
 }

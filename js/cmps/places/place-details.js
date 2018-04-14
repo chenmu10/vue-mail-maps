@@ -62,13 +62,3 @@ export default {
     `
 }
 
-
-
-
-// <div>
-// Name: {{ place.name }}
-// </div>
-
-// <div>
-// Address: {{ place.address }}
-// </div>

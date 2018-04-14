@@ -38,10 +38,6 @@ export default {
     <p><strong>is temp: </strong>{{ isTemp }}</p>
    
 
-   
-
-
-
     <form @submit.prevent>
         <div class="field">
             <label class="label">Name</label>
