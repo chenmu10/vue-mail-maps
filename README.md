@@ -1,3 +1,5 @@
-Vue.js project: email and myMaps clones with state management and Bulma UI framework
+Email and Maps clones
+> chenmu10.github.io/vue-mail-maps
+- Vue.js with state management
+- Bulma UI framework
 
-chenmu10.github.io/vue-mail-maps
